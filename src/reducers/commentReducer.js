@@ -1,8 +1,8 @@
 import {
-  FETCH_ARTICLES_BEGIN,
-  FETCH_ARTICLES_SUCCESS,
-  FETCH_ARTICLES_FAILURE
-} from '../actions/articleActions';
+  FETCH_COMMENTS_BEGIN,
+  FETCH_COMMENTS_SUCCESS,
+  FETCH_COMMENTS_FAILURE
+} from '../actions/commentActions';
 
 const initialState = {
   items: [],
@@ -10,9 +10,9 @@ const initialState = {
   error: null
 };
 
-export default function articleReducer(state = initialState, action) {
+export default function commentReducer(state = initialState, action) {
   switch (action.type) {
-    case FETCH_ARTICLES_BEGIN:
+    case FETCH_COMMENTS_BEGIN:
       //loading state - spinner can be shown
       return {
         ...state,
@@ -20,14 +20,14 @@ export default function articleReducer(state = initialState, action) {
         error: null
       };
 
-    case FETCH_ARTICLES_SUCCESS:
+    case FETCH_COMMENTS_SUCCESS:
       return {
         ...state,
         loading: false,
-        items: action.payload.articles
+        items: action.payload.comments
       };
 
-    case FETCH_ARTICLES_FAILURE:
+    case FETCH_COMMENTS_FAILURE:
       return {
         ...state,
         loading: false,

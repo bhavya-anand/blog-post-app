@@ -1,27 +1,45 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchArticles } from '../actions/articleActions';
+import { fetchComments } from '../actions/commentActions';
 
 class ArticleList extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchArticles());
+    this.props.dispatch(fetchComments());
   }
 
   render() {
-    const { error, loading, articles } = this.props;
-    
-    if (error) {
-      return <div>Error! {error.message}</div>;
+    const { articlesError, articlesLoading, articles, comments, commentsError, commentsLoading } = this.props;
+
+    if (articlesError) {
+      return
+      <div>Articles could not be loaded! {articlesError.message}</div>
     }
 
-    if (loading) {
-      return <div>Loading...</div>;
+    if (commentsError) {
+      return
+      <div>Comments could not be loaded! {commentsError.message}</div>
+    }
+
+    if (articlesLoading) {
+      return <div>Loading Articles...</div>;
+    }
+
+    if (commentsLoading) {
+      return <div>Loading Comments...</div>;
     }
 
     return (
+      // <ul>
+      //   {articles.map(article =>
+      //   //userId is also available
+      //     <li key={article.id}>{article.id}> Title: {article.title} Body: {article.body}</li>
+      //   )}
+      // </ul>
       <ul>
-        {articles.map(article =>
-          <li key={article.userId}>{article.id}>{article.title}{article.body}</li>
+        {comments.map(comment =>
+          <li key={comment.id}>{comment.postId}> Name: {comment.name} Email: {comment.email} Body: {comment.body}</li>
         )}
       </ul>
     );
@@ -29,9 +47,13 @@ class ArticleList extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  articles: state.items,
-  loading: state.loading,
-  error: state.error
+  articles: state.articleReducer.items,
+  articlesLoading: state.articleReducer.loading,
+  articlesError: state.articleReducer.error,
+
+  comments: state.commentReducer.items,
+  commentsLoading: state.commentReducer.loading,
+  commentsError: state.commentReducer.error
 });
 
 export default connect(mapStateToProps)(ArticleList);
