@@ -1,9 +1,9 @@
 import React from 'react';
-import ArticleList from '../containers/ArticleList';
+import ArticleAndCommentsList from '../containers/ArticleAndCommentsList';
 
 const App = () => (
   <div>   
-    <ArticleList />  
+    <ArticleAndCommentsList />  
   </div>
 )
 export default App

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { fetchArticles } from '../actions/articleActions';
 import { fetchComments } from '../actions/commentActions';
 
-class ArticleList extends React.Component {
+class ArticleAndCommentsList extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchArticles());
     this.props.dispatch(fetchComments());
@@ -31,10 +31,25 @@ class ArticleList extends React.Component {
     return (
       <ul>{articles.map(article =>
         <div align="center">
-          <h3>{article.title}</h3>
-          {article.body}
+          <div style={{backgroundColor:'lightGray'}}>
+            {console.log(article)}
+            <h3>{article.title}</h3>
+            {article.body}
+          </div>
+          <br />
+          <div>
+            {
+              comments.filter(function (comment) {
+                return comment.postId === article.id;
+              }).map(comment =>
+                <div>
+                  <span> {comment.body}</span>
+                  <br />
+                </div>
+              )}
+          </div>
         </div>
-      )}
+      )}ArticleAndCommentsList
       </ul>
     );
   }
@@ -50,4 +65,4 @@ const mapStateToProps = state => ({
   commentsError: state.commentReducer.error
 });
 
-export default connect(mapStateToProps)(ArticleList);
+export default connect(mapStateToProps)(ArticleAndCommentsList);
