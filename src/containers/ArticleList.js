@@ -10,16 +10,14 @@ class ArticleList extends React.Component {
   }
 
   render() {
-    const { articlesError, articlesLoading, articles, comments, commentsError, commentsLoading } = this.props;
+    const { articlesError, articlesLoading, articles, comments, commentsError, commentsLoading, result } = this.props;
 
     if (articlesError) {
-      return
-      <div>Articles could not be loaded! {articlesError.message}</div>
+      return <div>Articles could not be loaded! {articlesError.message}</div>
     }
 
     if (commentsError) {
-      return
-      <div>Comments could not be loaded! {commentsError.message}</div>
+      return <div>Comments could not be loaded! {commentsError.message}</div>
     }
 
     if (articlesLoading) {
@@ -31,19 +29,15 @@ class ArticleList extends React.Component {
     }
 
     return (
-      // <ul>
-      //   {articles.map(article =>
-      //   //userId is also available
-      //     <li key={article.id}>{article.id}> Title: {article.title} Body: {article.body}</li>
-      //   )}
-      // </ul>
-      <ul>
-        {comments.map(comment =>
-          <li key={comment.id}>{comment.postId}> Name: {comment.name} Email: {comment.email} Body: {comment.body}</li>
-        )}
+      <ul>{articles.map(article =>      
+        <div align="center">
+          <h3>{article.title}</h3>
+          {article.body}          
+      </div>
+         ) }   
       </ul>
     );
-  }
+}
 }
 
 const mapStateToProps = state => ({
