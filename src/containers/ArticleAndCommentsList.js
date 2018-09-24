@@ -10,7 +10,7 @@ class ArticleAndCommentsList extends React.Component {
   }
 
   render() {
-    const { articlesError, articlesLoading, articles, comments, commentsError, commentsLoading, result } = this.props;
+    const { articlesError, articlesLoading, articles, comments, commentsError, commentsLoading } = this.props;
 
     if (articlesError) {
       return <div>Articles could not be loaded! {articlesError.message}</div>
@@ -31,7 +31,7 @@ class ArticleAndCommentsList extends React.Component {
     return (
       <ul>{articles.map(article =>
         <div align="center">
-          <div style={{backgroundColor:'lightGray'}}>
+          <div style={{ backgroundColor: 'lightGray' }}>
             {console.log(article)}
             <h3>{article.title}</h3>
             {article.body}
