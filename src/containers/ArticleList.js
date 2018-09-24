@@ -29,15 +29,15 @@ class ArticleList extends React.Component {
     }
 
     return (
-      <ul>{articles.map(article =>      
+      <ul>{articles.map(article =>
         <div align="center">
           <h3>{article.title}</h3>
-          {article.body}          
-      </div>
-         ) }   
+          {article.body}
+        </div>
+      )}
       </ul>
     );
-}
+  }
 }
 
 const mapStateToProps = state => ({
