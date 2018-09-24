@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { fetchArticles } from '../actions/articleActions';
 import { fetchComments } from '../actions/commentActions';
+import PropTypes from 'prop-types'
 
 class ArticleAndCommentsList extends React.Component {
   componentDidMount() {
@@ -53,6 +54,15 @@ class ArticleAndCommentsList extends React.Component {
       </ul>
     );
   }
+}
+
+ArticleAndCommentsList.propTypes = {
+  articlesError: PropTypes.array.isRequired,
+  articlesLoading: PropTypes.bool.isRequired,
+  articles: PropTypes.array.isRequired,
+  comments: PropTypes.array.isRequired,
+  commentsError: PropTypes.array.isRequired,
+  commentsLoading: PropTypes.bool.isRequired
 }
 
 const mapStateToProps = state => ({
