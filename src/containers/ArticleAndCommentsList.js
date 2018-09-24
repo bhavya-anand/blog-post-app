@@ -49,7 +49,7 @@ class ArticleAndCommentsList extends React.Component {
               )}
           </div>
         </div>
-      )}ArticleAndCommentsList
+      )}
       </ul>
     );
   }
